@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head tag -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body ontouchstart="">
+    <br>
+    <div class="container">
+        <div id="map" style="width:1100px; height:700px;"></div>
+        <br><br>
+        <hr><br><br>
+        <div id="bar" style="width:1100px; height:700px;"></div>
+        <br><br>
+        <hr><br><br>
+        <div id="pie" style="width:1400x; height:700px;"></div>
+        <br><br>
+        <hr><br><br>
+        <div id="bar2" style="width:1100x; height:700px;"></div>
+        <br><br>
+        <hr><br><br>
+        <div id="line" style="width:1100x; height:700px;"></div>
+        <br><br>
+        <hr><br><br>
+        <div id="funnel" style="width:1100x; height:700px;"></div>
+        <br><br>
+        <hr><br><br>
+        <div id="wordcloud" style="width:1100x; height:700px;"></div>
+        <br><br>
+        <hr>
+
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" id="ta">
+
+            </div>
+        </div>
+    </div>
+    <script typet="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        $(
+            function () {
+                var chart = echarts.init(document.getElementById('bar'), 'white', { renderer: 'canvas' });
+                var chart2 = echarts.init(document.getElementById('pie'), 'white', { renderer: 'canvas' });
+                var chart3 = echarts.init(document.getElementById('bar2'), 'white', { renderer: 'canvas' });
+                var chart4 = echarts.init(document.getElementById('line'), 'white', { renderer: 'canvas' });
+                var chart5 = echarts.init(document.getElementById('funnel'), 'white', { renderer: 'canvas' });
+                var chart6 = echarts.init(document.getElementById('map'), 'white', { renderer: 'canvas' });
+                var chart7 = echarts.init(document.getElementById('wordcloud'), 'white', { renderer: 'canvas' });
+
+                $.ajax({
+                    type: "GET",
+                    url: "/api/charts",
+                    dataType: 'json',
+                    success: function (result) {
+                        chart.setOption(result.date);
+                        chart2.setOption(result.district);
+                        chart3.setOption(result.price);
+                        chart4.setOption(result.price_per_square_dis);
+                        chart5.setOption(result.area);
+                        chart6.setOption(result.map);
+                        chart7.setOption(result.resblock);
+                    }
+                });
+            }
+        )
+    </script>
+
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts-wordcloud.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/maps/jiang1_su1_nan2_jing1.js"></script>
+
+</body>
+</html
